@@ -9,15 +9,21 @@ public class Player : MonoBehaviour
     private GameObject roadNormalX;
     private GameObject roadNormalY;
 
+    private GameObject roadDiagonalX;
+    private GameObject roadDiagonalY;
+
     //プレイヤーの速度
     public float speed;
     Vector2 movedDir;
     //攻撃間隔
     float attackCount = 0;
+
+    public int attackInterval;
     //斜めか
-    bool isDiagonal;
-    //道か？
+    public bool isDiagonal;
+    //道か
     RaycastHit2D check;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,15 +38,33 @@ public class Player : MonoBehaviour
             new Vector3(transform.position.x,
             transform.position.y, -2),
             Quaternion.Euler(0, 0, 90));
-        isDiagonal = true;
+
+        roadDiagonalX = Instantiate(
+           roadBulletPrefab,
+           new Vector3(transform.position.x,
+           transform.position.y, -2),
+           Quaternion.Euler(0, 0, -45));
+
+        roadDiagonalY = Instantiate(
+            roadBulletPrefab,
+            new Vector3(transform.position.x,
+            transform.position.y, -2),
+            Quaternion.Euler(0, 0, 45));
+        isDiagonal = false;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        Move();
+        Shot();
+        
+    }
+
+    void Move()
+    {
         movedDir = new Vector2(0, 0);
-        attackCount += Time.deltaTime;
         //左
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
@@ -71,26 +95,36 @@ public class Player : MonoBehaviour
                 transform.Translate(movedDir * speed * Time.deltaTime);
             }
         }
+    }
 
-        Debug.Log(check.collider.tag);
-
-        if (attackCount >= 2)
+    void Shot()
+    {
+        if (attackCount >= attackInterval)
         {
-            if (isDiagonal)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                Destroy(roadNormalX);
-                Destroy(roadNormalY);
-                AttackDiagonal();
+                if (isDiagonal)
+                {
+                    Destroy(roadDiagonalX);
+                    Destroy(roadDiagonalY);
+                    AttackDiagonal();
+                }
+                else
+                {
+                    Destroy(roadNormalX);
+                    Destroy(roadNormalY);
+                    Attack();
+                }
+                attackCount = 0;
             }
-            else
-            {
-                Destroy(roadNormalX);
-                Destroy(roadNormalY);
-                Attack();
-            }
-            attackCount = 0;
+        }
+        else
+        {
+            attackCount += Time.deltaTime;
         }
     }
+
+    
 
     void Attack()
     {
@@ -110,13 +144,13 @@ public class Player : MonoBehaviour
 
     void AttackDiagonal()
     {
-        roadNormalX = Instantiate(
+        roadDiagonalX = Instantiate(
             roadBulletPrefab,
             new Vector3(transform.position.x,
             transform.position.y, -2),
             Quaternion.Euler(0, 0, -45));
-        
-        roadNormalY = Instantiate(
+
+        roadDiagonalY = Instantiate(
             roadBulletPrefab,
             new Vector3(transform.position.x,
             transform.position.y, -2), 

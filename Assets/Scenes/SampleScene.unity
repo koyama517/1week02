@@ -291,3 +291,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 3468168480056052215, guid: 7c0dd755a7fa5c746a598ae1b61b303a, type: 3}
   playerModelPrefab: {fileID: 4987959801040782092, guid: 56dba07306586c8448710c4597ad5ad5, type: 3}
+  enemyPrefab: {fileID: 8727422658461492978, guid: 79e53b0eebdf3ee429bd23076f1c1cf5, type: 3}
+  isClear: 0
+  isGameOver: 0

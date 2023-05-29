@@ -46,7 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadBulletPrefab: {fileID: 2786422843148489614, guid: 99d616bacb0e57a4cb5ab2d7e4bafab2, type: 3}
+  linePrefab: {fileID: 6493774575272707169, guid: 1c8396509d8e0414fb381472f33ea886, type: 3}
   speed: 3
+  attackInterval: 1
+  isDiagonal: 0
 --- !u!61 &6368959351489372497
 BoxCollider2D:
   m_ObjectHideFlags: 0

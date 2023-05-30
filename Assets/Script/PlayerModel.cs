@@ -55,5 +55,9 @@ public class PlayerModel : MonoBehaviour
             }
 
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

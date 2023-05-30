@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
     //“¹‚©
     RaycastHit2D check;
 
+    public int hp;
+
+    public bool isHit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +63,7 @@ public class Player : MonoBehaviour
 
         Move();
         Shot();
-        
+        live();
     }
 
     void Move()
@@ -124,8 +128,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    
-
     void Attack()
     {
         roadNormalX = Instantiate(
@@ -167,6 +169,18 @@ public class Player : MonoBehaviour
 
         RaycastHit2D result = Physics2D.Raycast(pos,dir,0);
         return result;
+    }
+
+    void live()
+    {
+        if (isHit)
+        {
+            hp--;
+        }
+        if(hp == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
 

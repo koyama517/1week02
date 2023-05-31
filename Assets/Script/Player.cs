@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -48,10 +49,30 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Move();
-        Shot();
-        live();
+        if (SceneManager.GetActiveScene().name == "SampleScene")
+        {
+            Enemy enemyHp;
+            GameObject enemy = GameObject.Find("Enemy(Clone)");
+            if (enemy != null)
+            {
+                enemyHp = enemy.GetComponent<Enemy>();
+                if (enemyHp != null)
+                {
+                    if (enemyHp.isAlive)
+                    {
+                        Move();
+                        Shot();
+                        live();
+                    }
+                }
+            }
+        }
+        else
+        {
+            Move();
+            Shot();
+            live();
+        }
     }
 
     void Move()

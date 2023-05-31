@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
     public bool isTopAttack;
     public bool isBottomAttack;
 
+    public bool isAlive;
+
     public float time;
     public float mag;
     public float deadCount;
@@ -34,6 +36,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         dir = new Vector3(1, 1);
+        isAlive = true;
     }
 
     // Update is called once per frame
@@ -50,11 +53,11 @@ public class Enemy : MonoBehaviour
         {
             if (hp < 5)
             {
-                speed = 3f;
+                speed = 2.5f;
             }
             else
             {
-                speed = 2.5f;
+                speed = 2.0f;
             }
             transform.Translate(dir * speed * Time.deltaTime);
 
@@ -68,7 +71,7 @@ public class Enemy : MonoBehaviour
                         isLeftAttack = true;
                         isAttackX = true;
                     }
-                    dir.x = Random.Range(-2, -1);
+                    dir.x = Random.Range(-2.5f, -1);
                 }
                 else
                 {
@@ -78,7 +81,7 @@ public class Enemy : MonoBehaviour
                         isRightAttack = true;
                         isAttackX = true;
                     }
-                    dir.x = Random.Range(1, 2);
+                    dir.x = Random.Range(1, 2.5f);
                 }
 
             }
@@ -92,7 +95,7 @@ public class Enemy : MonoBehaviour
                         isTopAttack = true;
                         isAttackY = true;
                     }
-                    dir.y = Random.Range(-2, -1);
+                    dir.y = Random.Range(-2.5f, -1);
                 }
                 else
                 {
@@ -102,12 +105,13 @@ public class Enemy : MonoBehaviour
                         isBottomAttack = true;
                         isAttackY = true;
                     }
-                    dir.y = Random.Range(1, 2);
+                    dir.y = Random.Range(1, 2.5f);
                 }
             }
 
             if (hp <= 0)
             {
+                isAlive = false;
                 if (deadCount > 2)
                 {
                     Destroy(this.gameObject);

@@ -23,23 +23,30 @@ public class BulletY : MonoBehaviour
             enemyAttack = enemy.GetComponent<Enemy>();
             if (enemyAttack != null)
             {
-                if (enemyAttack.isTopAttack)
+                if (enemyAttack.isAlive)
                 {
-                    dir = new Vector2(0, -1);
-                    transform.Translate(dir * speed * Time.deltaTime);
-                    if (transform.position.y <= -5)
+                    if (enemyAttack.isTopAttack)
                     {
-                        Destroy(gameObject);
+                        dir = new Vector2(0, -1);
+                        transform.Translate(dir * speed * Time.deltaTime);
+                        if (transform.position.y <= -5)
+                        {
+                            Destroy(gameObject);
+                        }
+                    }
+                    if (enemyAttack.isBottomAttack)
+                    {
+                        dir = new Vector2(0, 1);
+                        transform.Translate(dir * speed * Time.deltaTime);
+                        if (transform.position.y >= 5)
+                        {
+                            Destroy(gameObject);
+                        }
                     }
                 }
-                if (enemyAttack.isBottomAttack)
+                else
                 {
-                    dir = new Vector2(0, 1);
-                    transform.Translate(dir * speed * Time.deltaTime);
-                    if (transform.position.y >= 5)
-                    {
-                        Destroy(gameObject);
-                    }
+                    Destroy(gameObject);
                 }
             }
         }

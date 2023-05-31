@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,23 +24,30 @@ public class Bullet : MonoBehaviour
 
             if (enemyAttack != null)
             {
-                if (enemyAttack.isLeftAttack)
+                if (enemyAttack.isAlive)
                 {
-                    dir = new Vector2(1, 0);
-                    transform.Translate(dir * speed * Time.deltaTime);
-                    if (transform.position.x >= 5)
+                    if (enemyAttack.isLeftAttack)
                     {
-                        Destroy(gameObject);
+                        dir = new Vector2(1, 0);
+                        transform.Translate(dir * speed * Time.deltaTime);
+                        if (transform.position.x >= 5)
+                        {
+                            Destroy(gameObject);
+                        }
+                    }
+                    if (enemyAttack.isRightAttack)
+                    {
+                        dir = new Vector2(-1, 0);
+                        transform.Translate(dir * speed * Time.deltaTime);
+                        if (transform.position.x <= -5)
+                        {
+                            Destroy(gameObject);
+                        }
                     }
                 }
-                if (enemyAttack.isRightAttack)
+                else
                 {
-                    dir = new Vector2(-1, 0);
-                    transform.Translate(dir * speed * Time.deltaTime);
-                    if (transform.position.x <= -5)
-                    {
-                        Destroy(gameObject);
-                    }
+                    Destroy(gameObject);
                 }
             }
         }

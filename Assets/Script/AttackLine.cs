@@ -14,6 +14,8 @@ public class AttackLine : MonoBehaviour
     public int speed;
     float easeSpeed;
 
+    float bulletCount;
+
     public bool isShoted;
     // Start is called before the first frame update
     void Start()
@@ -24,7 +26,7 @@ public class AttackLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // Debug.Log(easeSpeed);
+        // Debug.Log(easeSpeed);
         Enemy enemyAttack;
         GameObject enemy = GameObject.Find("Enemy(Clone)");
         if (enemy != null)
@@ -32,60 +34,81 @@ public class AttackLine : MonoBehaviour
             enemyAttack = enemy.GetComponent<Enemy>();
             if (enemyAttack != null)
             {
-                if (enemyAttack.isLeftAttack)
+                if (enemyAttack.isAlive)
                 {
-                    lineDir = new Vector2(1, 0);
-                    if (transform.position.x < -1)
+                    if (enemyAttack.isLeftAttack)
                     {
-                        easeSpeed += 0.1f;
-                        transform.Translate(lineDir * (speed + easeSpeed) * Time.deltaTime);
-                    }
-                    else
-                    {
-                        ShotToLeft();
+                        lineDir = new Vector2(1, 0);
+                        if (transform.position.x < -1)
+                        {
+                            easeSpeed += 0.1f;
+                            transform.Translate(lineDir * (speed + easeSpeed) * Time.deltaTime);
+                        }
+                        else
+                        {
+                            if (bulletCount > 0.5f)
+                            {
+                                ShotToLeft();
+                            }
+                            else
+                            {
+                                bulletCount += Time.deltaTime;
+                            }
+                        }
+
+                        if (isShoted)
+                        {
+                            if (bullet == null)
+                            {
+                                if (enemyAttack.hp > 5) { easeSpeed += 0.1f; }
+                                else { easeSpeed += 0.3f; }
+                                transform.Translate(lineDir * (speed + easeSpeed) * Time.deltaTime);
+                                if (transform.position.x >= 20)
+                                {
+                                    Destroy(gameObject);
+                                }
+                            }
+                        }
                     }
 
-                    if (isShoted)
+                    if (enemyAttack.isRightAttack)
                     {
-                        if (bullet == null)
+                        lineDir = new Vector2(-1, 0);
+                        if (transform.position.x > 1)
                         {
-                            if (enemyAttack.hp > 5) { easeSpeed += 0.1f; }
-                            else { easeSpeed += 0.3f; }
+                            easeSpeed += 0.1f;
                             transform.Translate(lineDir * (speed + easeSpeed) * Time.deltaTime);
-                            if (transform.position.x >= 20)
+                        }
+                        else
+                        {
+                            if (bulletCount > 0.5f)
                             {
-                                Destroy(gameObject);
+                                ShotToRight();
+                            }
+                            else
+                            {
+                                bulletCount += Time.deltaTime;
+                            }
+                        }
+
+                        if (isShoted)
+                        {
+                            if (bullet == null)
+                            {
+                                if (enemyAttack.hp > 5) { easeSpeed += 0.1f; }
+                                else { easeSpeed += 0.3f; }
+                                transform.Translate(lineDir * (speed + easeSpeed) * Time.deltaTime);
+                                if (transform.position.x <= -20)
+                                {
+                                    Destroy(gameObject);
+                                }
                             }
                         }
                     }
                 }
-
-                if (enemyAttack.isRightAttack)
+                else
                 {
-                    lineDir = new Vector2(-1, 0);
-                    if (transform.position.x > 1)
-                    {
-                        easeSpeed += 0.1f;
-                        transform.Translate(lineDir * (speed + easeSpeed) * Time.deltaTime);
-                    }
-                    else
-                    {
-                        ShotToRight();
-                    }
-
-                    if (isShoted)
-                    {
-                        if (bullet == null)
-                        {
-                            if (enemyAttack.hp > 5) { easeSpeed += 0.1f; }
-                            else { easeSpeed += 0.3f; }
-                            transform.Translate(lineDir * (speed + easeSpeed) * Time.deltaTime);
-                            if (transform.position.x <= -20)
-                            {
-                                Destroy(gameObject);
-                            }
-                        }
-                    }
+                    Destroy(gameObject);
                 }
             }
         }

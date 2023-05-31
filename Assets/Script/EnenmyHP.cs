@@ -20,7 +20,10 @@ public class EnenmyHP : MonoBehaviour
             enemyHp = enemy.GetComponent<Enemy>();
             if (enemyHp != null)
             {
-                transform.localScale = new Vector3(20, enemyHp.hp, 0);
+                if (enemyHp.hp >= 0)
+                {
+                    transform.localScale = new Vector3(20, enemyHp.hp, 0);
+                }
             }
         }
     }

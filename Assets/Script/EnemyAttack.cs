@@ -141,7 +141,7 @@ public class EnemyAttack : MonoBehaviour
                 {
                     attackLine1Y = Instantiate(attackLinePrefabY, new Vector3(-4, 20, -5), Quaternion.Euler(0, 0, 90));
                     attackLine2Y = Instantiate(attackLinePrefabY, new Vector3(-2, 20, -5), Quaternion.Euler(0, 0, 90));
-                    attackLine3Y = Instantiate(attackLinePrefabY, new Vector3(4, 20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine3Y = Instantiate(attackLinePrefabY, new Vector3(0, 20, -5), Quaternion.Euler(0, 0, 90));
                     attackLine4Y = Instantiate(attackLinePrefabY, new Vector3(2, 20, -5), Quaternion.Euler(0, 0, 90));
                     isMakePrefabY = true;
                 }

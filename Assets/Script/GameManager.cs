@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         enemy = Instantiate(
             enemyPrefab,
             new Vector3(transform.position.x,
-            3, -3),
+            3, -5),
             Quaternion.identity);
 
     }

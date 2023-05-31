@@ -49,7 +49,8 @@ public class AttackLine : MonoBehaviour
                     {
                         if (bullet == null)
                         {
-                            easeSpeed += 0.1f;
+                            if (enemyAttack.hp > 5) { easeSpeed += 0.1f; }
+                            else { easeSpeed += 0.3f; }
                             transform.Translate(lineDir * (speed + easeSpeed) * Time.deltaTime);
                             if (transform.position.x >= 20)
                             {
@@ -76,7 +77,8 @@ public class AttackLine : MonoBehaviour
                     {
                         if (bullet == null)
                         {
-                            easeSpeed += 0.1f;
+                            if (enemyAttack.hp > 5) { easeSpeed += 0.1f; }
+                            else { easeSpeed += 0.3f; }
                             transform.Translate(lineDir * (speed + easeSpeed) * Time.deltaTime);
                             if (transform.position.x <= -20)
                             {

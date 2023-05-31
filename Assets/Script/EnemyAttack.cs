@@ -40,7 +40,7 @@ public class EnemyAttack : MonoBehaviour
             if (enemy.isLeftAttack)
             {
                 LeftAttack();
-                if(attackLine1X == null)
+                if (attackLine1X == null)
                 {
                     enemy.isLeftAttack = false;
                     isMakePrefabX = false;
@@ -84,27 +84,53 @@ public class EnemyAttack : MonoBehaviour
     {
         if (!isMakePrefabX)
         {
-            attackLine1X = Instantiate(attackLinePrefab, new Vector3(-20, 4.5f, -5), Quaternion.identity);
-            attackLine2X = Instantiate(attackLinePrefab, new Vector3(-20, 2.5f, -5), Quaternion.identity);
-            attackLine3X = Instantiate(attackLinePrefab, new Vector3(-20, 0.5f, -5), Quaternion.identity);
-            attackLine4X = Instantiate(attackLinePrefab, new Vector3(-20, -1.5f, -5), Quaternion.identity);
-            attackLine5X = Instantiate(attackLinePrefab, new Vector3(-20, -3.5f, -5), Quaternion.identity);
-            isMakePrefabX = true;
+            Enemy enemy = GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                if (enemy.hp < 5)
+                {
+                    attackLine1X = Instantiate(attackLinePrefab, new Vector3(-20, 4.5f, -5), Quaternion.identity);
+                    attackLine2X = Instantiate(attackLinePrefab, new Vector3(-20, 2.5f, -5), Quaternion.identity);
+                    attackLine3X = Instantiate(attackLinePrefab, new Vector3(-20, 0.5f, -5), Quaternion.identity);
+                    attackLine4X = Instantiate(attackLinePrefab, new Vector3(-20, -1.5f, -5), Quaternion.identity);
+                    attackLine5X = Instantiate(attackLinePrefab, new Vector3(-20, -3.5f, -5), Quaternion.identity);
+                    isMakePrefabX = true;
+                }
+                else
+                {
+                    attackLine1X = Instantiate(attackLinePrefab, new Vector3(-20, -2.5f, -5), Quaternion.identity);
+                    attackLine2X = Instantiate(attackLinePrefab, new Vector3(-20, 2.5f, -5), Quaternion.identity);
+                    attackLine3X = Instantiate(attackLinePrefab, new Vector3(-20, 0.0f, -5), Quaternion.identity);
+                    isMakePrefabX = true;
+                }
+            }
         }
-
-
     }
 
     void RightAttack()
     {
         if (!isMakePrefabX)
         {
-            attackLine1X = Instantiate(attackLinePrefab, new Vector3(20, 4, -5), Quaternion.identity);
-            attackLine2X = Instantiate(attackLinePrefab, new Vector3(20, 2, -5), Quaternion.identity);
-            attackLine3X = Instantiate(attackLinePrefab, new Vector3(20, 0, -5), Quaternion.identity);
-            attackLine4X = Instantiate(attackLinePrefab, new Vector3(20, -2, -5), Quaternion.identity);
-            attackLine5X = Instantiate(attackLinePrefab, new Vector3(20, -4, -5), Quaternion.identity);
-            isMakePrefabX = true;
+            Enemy enemy = GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                if (enemy.hp < 5)
+                {
+                    attackLine1X = Instantiate(attackLinePrefab, new Vector3(20, 4, -5), Quaternion.identity);
+                    attackLine2X = Instantiate(attackLinePrefab, new Vector3(20, 2, -5), Quaternion.identity);
+                    attackLine3X = Instantiate(attackLinePrefab, new Vector3(20, 0, -5), Quaternion.identity);
+                    attackLine4X = Instantiate(attackLinePrefab, new Vector3(20, -2, -5), Quaternion.identity);
+                    attackLine5X = Instantiate(attackLinePrefab, new Vector3(20, -4, -5), Quaternion.identity);
+                    isMakePrefabX = true;
+                }
+                else
+                {
+                    attackLine1X = Instantiate(attackLinePrefab, new Vector3(20, -3, -5), Quaternion.identity);
+                    attackLine2X = Instantiate(attackLinePrefab, new Vector3(20, 3, -5), Quaternion.identity);
+                    attackLine3X = Instantiate(attackLinePrefab, new Vector3(20, 0, -5), Quaternion.identity);
+                    isMakePrefabX = true;
+                }
+            }
         }
     }
 
@@ -112,25 +138,52 @@ public class EnemyAttack : MonoBehaviour
     {
         if (!isMakePrefabY)
         {
-            attackLine1Y = Instantiate(attackLinePrefabY, new Vector3(-4, 20, -5), Quaternion.Euler(0,0,90));
-            attackLine2Y = Instantiate(attackLinePrefabY, new Vector3(-2, 20, -5), Quaternion.Euler(0, 0, 90));
-            attackLine3Y = Instantiate(attackLinePrefabY, new Vector3(0, 20, -5), Quaternion.Euler(0, 0, 90));
-            attackLine4Y = Instantiate(attackLinePrefabY, new Vector3(2, 20, -5), Quaternion.Euler(0, 0, 90));
-            attackLine5Y = Instantiate(attackLinePrefabY, new Vector3(4, 20, -5), Quaternion.Euler(0, 0, 90));
-            isMakePrefabY = true;
+            Enemy enemy = GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                if (enemy.hp < 5)
+                {
+                    attackLine1Y = Instantiate(attackLinePrefabY, new Vector3(-4, 20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine2Y = Instantiate(attackLinePrefabY, new Vector3(-2, 20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine3Y = Instantiate(attackLinePrefabY, new Vector3(0, 20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine4Y = Instantiate(attackLinePrefabY, new Vector3(2, 20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine5Y = Instantiate(attackLinePrefabY, new Vector3(4, 20, -5), Quaternion.Euler(0, 0, 90));
+                    isMakePrefabY = true;
+                }
+                else
+                {
+                    attackLine1Y = Instantiate(attackLinePrefabY, new Vector3(-4, 20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine2Y = Instantiate(attackLinePrefabY, new Vector3(-2, 20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine3Y = Instantiate(attackLinePrefabY, new Vector3(0, 20, -5), Quaternion.Euler(0, 0, 90));
+                    isMakePrefabY = true;
+                }
+            }
         }
     }
-
     void BottomAttack()
     {
         if (!isMakePrefabY)
         {
-            attackLine1Y = Instantiate(attackLinePrefabY, new Vector3(-4, -20, -5), Quaternion.Euler(0, 0, 90));
-            attackLine2Y = Instantiate(attackLinePrefabY, new Vector3(-2, -20, -5), Quaternion.Euler(0, 0, 90));
-            attackLine3Y = Instantiate(attackLinePrefabY, new Vector3(0, -20, -5), Quaternion.Euler(0, 0, 90));
-            attackLine4Y = Instantiate(attackLinePrefabY, new Vector3(2, -20, -5), Quaternion.Euler(0, 0, 90));
-            attackLine5Y = Instantiate(attackLinePrefabY, new Vector3(4, -20, -5), Quaternion.Euler(0, 0, 90));
-            isMakePrefabY = true;
+            Enemy enemy = GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                if (enemy.hp < 5)
+                {
+                    attackLine1Y = Instantiate(attackLinePrefabY, new Vector3(-4, -20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine2Y = Instantiate(attackLinePrefabY, new Vector3(-2, -20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine3Y = Instantiate(attackLinePrefabY, new Vector3(0, -20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine4Y = Instantiate(attackLinePrefabY, new Vector3(2, -20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine5Y = Instantiate(attackLinePrefabY, new Vector3(4, -20, -5), Quaternion.Euler(0, 0, 90));
+                    isMakePrefabY = true;
+                }
+                else
+                {
+                    attackLine1Y = Instantiate(attackLinePrefabY, new Vector3(4, -20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine2Y = Instantiate(attackLinePrefabY, new Vector3(2, -20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine3Y = Instantiate(attackLinePrefabY, new Vector3(0, -20, -5), Quaternion.Euler(0, 0, 90));
+                    isMakePrefabY = true;
+                }
+            }
         }
     }
 }

@@ -100,9 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeed29cf2f029d544822170918df86d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   isHit: 0
-  hp: 10
+  hp: 11
   isAttackX: 0
   isAttackY: 0
   isLeftAttack: 0

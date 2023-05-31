@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     public float speed;
     Vector2 movedDir;
     //çUåÇä‘äu
-    float attackCount = 0;
+    public float attackCount = 0;
 
     public int attackInterval;
     //éŒÇﬂÇ©
@@ -31,18 +31,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        roadNormalX = Instantiate(
-            roadBulletPrefab,
-            new Vector3(transform.position.x,
-            transform.position.y, -2),
-            Quaternion.identity);
-
-        roadNormalY = Instantiate(
-            roadBulletPrefab,
-            new Vector3(transform.position.x,
-            transform.position.y, -2),
-            Quaternion.Euler(0, 0, 90));
-
         roadDiagonalX = Instantiate(
            roadBulletPrefab,
            new Vector3(transform.position.x,
@@ -99,6 +87,28 @@ public class Player : MonoBehaviour
                 transform.Translate(movedDir * speed * Time.deltaTime);
             }
         }
+        if (transform.position.y <= -4.5 || transform.position.y >= 4.5)
+        {
+            if (transform.position.y > 0)
+            {
+                transform.position = new Vector3(transform.position.x, 4.4f, transform.position.z);
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x, -4.4f, transform.position.z);
+            }
+        }
+        if (transform.position.x <= -4.5 || transform.position.x >= 4.5)
+        {
+            if (transform.position.x > 0)
+            {
+                transform.position = new Vector3(4.4f, transform.position.y, transform.position.z);
+            }
+            else
+            {
+                transform.position = new Vector3(-4.4f, transform.position.y, transform.position.z);
+            }
+        }
     }
 
     void Shot()
@@ -131,15 +141,15 @@ public class Player : MonoBehaviour
     void Attack()
     {
         roadNormalX = Instantiate(
-            roadBulletPrefab, 
+            roadBulletPrefab,
             new Vector3(transform.position.x,
-            transform.position.y, -2), 
+            transform.position.y, -2),
             Quaternion.identity);
-        
+
         roadNormalY = Instantiate(
-            roadBulletPrefab, 
+            roadBulletPrefab,
             new Vector3(transform.position.x,
-            transform.position.y, -2), 
+            transform.position.y, -2),
             Quaternion.Euler(0, 0, 90));
         isDiagonal = true;
     }
@@ -155,7 +165,7 @@ public class Player : MonoBehaviour
         roadDiagonalY = Instantiate(
             roadBulletPrefab,
             new Vector3(transform.position.x,
-            transform.position.y, -2), 
+            transform.position.y, -2),
             Quaternion.Euler(0, 0, 45));
         isDiagonal = false;
     }
@@ -167,7 +177,7 @@ public class Player : MonoBehaviour
             transform.position.y + transform.localScale.y * dir.y,
             -2);
 
-        RaycastHit2D result = Physics2D.Raycast(pos,dir,0);
+        RaycastHit2D result = Physics2D.Raycast(pos, dir, 0);
         return result;
     }
 
@@ -177,7 +187,7 @@ public class Player : MonoBehaviour
         {
             hp--;
         }
-        if(hp == 0)
+        if (hp == 0)
         {
             Destroy(gameObject);
         }

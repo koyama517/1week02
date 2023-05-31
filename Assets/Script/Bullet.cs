@@ -18,9 +18,10 @@ public class Bullet : MonoBehaviour
     {
         Enemy enemyAttack;
         GameObject enemy = GameObject.Find("Enemy(Clone)");
-        enemyAttack = enemy.GetComponent<Enemy>();
         if (enemy != null)
         {
+            enemyAttack = enemy.GetComponent<Enemy>();
+
             if (enemyAttack != null)
             {
                 if (enemyAttack.isLeftAttack)

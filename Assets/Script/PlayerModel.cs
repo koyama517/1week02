@@ -38,6 +38,14 @@ public class PlayerModel : MonoBehaviour
             lineY.transform.position = transform.position;
             if (playerScript != null)
             {
+                if(playerScript.attackCount >= playerScript.attackInterval)
+                {
+                    GetComponent<SpriteRenderer>().color = Color.white;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().color = new Color(0.3f,0.3f,0.3f);
+                }
                 if (playerScript.isDiagonal)
                 {
 

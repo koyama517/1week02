@@ -20,11 +20,14 @@ public class AttackWay : MonoBehaviour
 
         if (isAttack)
         {
-            count += Time.deltaTime;
+            count += Time.deltaTime; 
+            GetComponent<SpriteRenderer>().color = new Color(0.5f, 1.0f, 0.8f);
+
         }
         if (count > 1) 
         {
             isAttack = false;
+            GetComponent<SpriteRenderer>().color = Color.white;
         }
 
         //Debug.Log(isAttack);

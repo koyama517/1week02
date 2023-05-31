@@ -87,7 +87,7 @@ public class EnemyAttack : MonoBehaviour
             {
                 if (enemy.hp < 5)
                 {
-                    attackLine1X = Instantiate(attackLinePrefab, new Vector3(-20, 4.0f, -5), Quaternion.identity);
+                    attackLine1X = Instantiate(attackLinePrefab, new Vector3(-20, 0.0f, -5), Quaternion.identity);
                     attackLine2X = Instantiate(attackLinePrefab, new Vector3(-20, 2.0f, -5), Quaternion.identity);
                     attackLine3X = Instantiate(attackLinePrefab, new Vector3(-20, -2.0f, -5), Quaternion.identity);
                     attackLine4X = Instantiate(attackLinePrefab, new Vector3(-20, -4.0f, -5), Quaternion.identity);

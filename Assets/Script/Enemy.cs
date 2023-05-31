@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
 
     public float time;
     public float mag;
+    public float deadCount;
 
     // Start is called before the first frame update
     void Start()
@@ -49,11 +50,11 @@ public class Enemy : MonoBehaviour
         {
             if (hp < 5)
             {
-                speed = 2.5f;
+                speed = 3f;
             }
             else
             {
-                speed = 2.0f;
+                speed = 2.5f;
             }
             transform.Translate(dir * speed * Time.deltaTime);
 
@@ -67,7 +68,7 @@ public class Enemy : MonoBehaviour
                         isLeftAttack = true;
                         isAttackX = true;
                     }
-                    dir.x = Random.Range(-3, -1);
+                    dir.x = Random.Range(-2, -1);
                 }
                 else
                 {
@@ -77,7 +78,7 @@ public class Enemy : MonoBehaviour
                         isRightAttack = true;
                         isAttackX = true;
                     }
-                    dir.x = Random.Range(1, 3);
+                    dir.x = Random.Range(1, 2);
                 }
 
             }
@@ -91,7 +92,7 @@ public class Enemy : MonoBehaviour
                         isTopAttack = true;
                         isAttackY = true;
                     }
-                    dir.y = Random.Range(-3, -1);
+                    dir.y = Random.Range(-2, -1);
                 }
                 else
                 {
@@ -101,13 +102,21 @@ public class Enemy : MonoBehaviour
                         isBottomAttack = true;
                         isAttackY = true;
                     }
-                    dir.y = Random.Range(1, 3);
+                    dir.y = Random.Range(1, 2);
                 }
             }
 
             if (hp <= 0)
             {
-                Destroy(this.gameObject);
+                if (deadCount > 2)
+                {
+                    Destroy(this.gameObject);
+                }
+                else
+                {
+                    Shake(1, 1);
+                    deadCount += Time.deltaTime;
+                }
             }
 
             if (isHit)

@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
         {
             if (hp < 5)
             {
-                speed = 3.0f;
+                speed = 2.5f;
             }
             else
             {
@@ -67,6 +67,7 @@ public class Enemy : MonoBehaviour
                         isLeftAttack = true;
                         isAttackX = true;
                     }
+                    dir.x = Random.Range(-3, -1);
                 }
                 else
                 {
@@ -76,9 +77,9 @@ public class Enemy : MonoBehaviour
                         isRightAttack = true;
                         isAttackX = true;
                     }
+                    dir.x = Random.Range(1, 3);
                 }
 
-                dir.x *= -1;
             }
             if (transform.position.y <= -4.5 || transform.position.y >= 4.5)
             {
@@ -90,6 +91,7 @@ public class Enemy : MonoBehaviour
                         isTopAttack = true;
                         isAttackY = true;
                     }
+                    dir.y = Random.Range(-3, -1);
                 }
                 else
                 {
@@ -99,8 +101,8 @@ public class Enemy : MonoBehaviour
                         isBottomAttack = true;
                         isAttackY = true;
                     }
+                    dir.y = Random.Range(1, 3);
                 }
-                dir.y *= -1;
             }
 
             if (hp <= 0)

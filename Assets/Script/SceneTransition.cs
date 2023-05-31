@@ -16,13 +16,26 @@ public class SceneTransition : MonoBehaviour
     void Update()
     {
 
+        if (SceneManager.GetActiveScene().name == "Title")
+        {
+            Player playerScript;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                playerScript = player.GetComponent<Player>();
+                if (playerScript != null )
+                {
+                    if(player.transform.position.x >= 4.4f)
+                    {
+                        SceneManager.LoadScene("Scenes/SampleScene");
+                    }
+                }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (SceneManager.GetActiveScene().name == "Title")
-            {
-                SceneManager.LoadScene("Scenes/SampleScene");
-            }
-            else if (SceneManager.GetActiveScene().name == "SampleScene")
+            if (SceneManager.GetActiveScene().name == "SampleScene")
             {
                 GameManager gameManagerScript;
                 GameObject gameManager = GameObject.Find("GameManager");
@@ -42,7 +55,8 @@ public class SceneTransition : MonoBehaviour
                     }
                 }
             }
-            else
+            else if(SceneManager.GetActiveScene().name == "GameClear" ||
+                SceneManager.GetActiveScene().name == "GameOver")
             {
                 SceneManager.LoadScene("Scenes/Title");
             }

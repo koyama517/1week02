@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
             Shot();
             live();
         }
+        
     }
 
     void Move()
@@ -207,6 +208,7 @@ public class Player : MonoBehaviour
         if (isHit)
         {
             hp--;
+            isHit = false;
         }
         if (hp == 0)
         {

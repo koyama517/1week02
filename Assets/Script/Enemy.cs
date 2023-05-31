@@ -53,11 +53,11 @@ public class Enemy : MonoBehaviour
         {
             if (hp < 5)
             {
-                speed = 2.5f;
+                speed = 2.0f;
             }
             else
             {
-                speed = 2.0f;
+                speed = 1.8f;
             }
             transform.Translate(dir * speed * Time.deltaTime);
 

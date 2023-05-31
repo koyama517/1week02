@@ -40,7 +40,18 @@ public class PlayerModel : MonoBehaviour
             {
                 if(playerScript.attackCount >= playerScript.attackInterval)
                 {
-                    GetComponent<SpriteRenderer>().color = Color.white;
+                    if (playerScript.hp == 3)
+                    {
+                        GetComponent<SpriteRenderer>().color = Color.white;
+                    }
+                    else if (playerScript.hp == 2)
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(0.4f, 1f, 0.4f); ;
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1f, 0.3f, 0.3f); ;
+                    }
                 }
                 else
                 {

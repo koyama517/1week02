@@ -26,6 +26,9 @@ public class Enemy : MonoBehaviour
     public bool isTopAttack;
     public bool isBottomAttack;
 
+    public float time;
+    public float mag;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -107,7 +110,7 @@ public class Enemy : MonoBehaviour
 
             if (isHit)
             {
-                if (hitTimer >= 1)
+                if (hitTimer >= 0.5f)
                 {
                     isHit = false;
                     hitTimer = 0;
@@ -123,17 +126,37 @@ public class Enemy : MonoBehaviour
                 else
                 {
                     hitTimer += Time.deltaTime;
-
                     GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.0f, 0.0f); ;
                 }
             }
         }
     }
 
+    public void Shake(float duration, float magnitude)
+    {
+        StartCoroutine(TheShake(duration, magnitude));
+    }
+    private IEnumerator TheShake(float duration, float magnitude)
+    {
+        Vector3 pos = transform.localPosition;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            var x = pos.x + Random.Range(-1f, 1f) * magnitude;
+            var y = pos.y + Random.Range(-1f, 1) * magnitude;
+
+            transform.localPosition = new Vector3(x, y, pos.z);
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+        transform.localPosition = pos;
+    }
     public void Damage()
     {
         hp -= 1;
         isHit = true;
+        Shake(time, mag);
 
     }
     private void OnTriggerEnter2D(Collider2D collision)

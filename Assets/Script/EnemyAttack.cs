@@ -16,13 +16,11 @@ public class EnemyAttack : MonoBehaviour
     private GameObject attackLine2X;
     private GameObject attackLine3X;
     private GameObject attackLine4X;
-    private GameObject attackLine5X;
 
     private GameObject attackLine1Y;
     private GameObject attackLine2Y;
     private GameObject attackLine3Y;
     private GameObject attackLine4Y;
-    private GameObject attackLine5Y;
     public int lineSpeed;
     public int dir;
     // Start is called before the first frame update
@@ -89,11 +87,10 @@ public class EnemyAttack : MonoBehaviour
             {
                 if (enemy.hp < 5)
                 {
-                    attackLine1X = Instantiate(attackLinePrefab, new Vector3(-20, 4.5f, -5), Quaternion.identity);
-                    attackLine2X = Instantiate(attackLinePrefab, new Vector3(-20, 2.5f, -5), Quaternion.identity);
-                    attackLine3X = Instantiate(attackLinePrefab, new Vector3(-20, 0.5f, -5), Quaternion.identity);
-                    attackLine4X = Instantiate(attackLinePrefab, new Vector3(-20, -1.5f, -5), Quaternion.identity);
-                    attackLine5X = Instantiate(attackLinePrefab, new Vector3(-20, -3.5f, -5), Quaternion.identity);
+                    attackLine1X = Instantiate(attackLinePrefab, new Vector3(-20, 4.0f, -5), Quaternion.identity);
+                    attackLine2X = Instantiate(attackLinePrefab, new Vector3(-20, 2.0f, -5), Quaternion.identity);
+                    attackLine3X = Instantiate(attackLinePrefab, new Vector3(-20, -2.0f, -5), Quaternion.identity);
+                    attackLine4X = Instantiate(attackLinePrefab, new Vector3(-20, -4.0f, -5), Quaternion.identity);
                     isMakePrefabX = true;
                 }
                 else
@@ -116,11 +113,10 @@ public class EnemyAttack : MonoBehaviour
             {
                 if (enemy.hp < 5)
                 {
-                    attackLine1X = Instantiate(attackLinePrefab, new Vector3(20, 4, -5), Quaternion.identity);
-                    attackLine2X = Instantiate(attackLinePrefab, new Vector3(20, 2, -5), Quaternion.identity);
-                    attackLine3X = Instantiate(attackLinePrefab, new Vector3(20, 0, -5), Quaternion.identity);
-                    attackLine4X = Instantiate(attackLinePrefab, new Vector3(20, -2, -5), Quaternion.identity);
-                    attackLine5X = Instantiate(attackLinePrefab, new Vector3(20, -4, -5), Quaternion.identity);
+                    attackLine1X = Instantiate(attackLinePrefab, new Vector3(20, 4.5f, -5), Quaternion.identity);
+                    attackLine2X = Instantiate(attackLinePrefab, new Vector3(20, 2.5f, -5), Quaternion.identity);
+                    attackLine3X = Instantiate(attackLinePrefab, new Vector3(20, 0.5f, -5), Quaternion.identity);
+                    attackLine4X = Instantiate(attackLinePrefab, new Vector3(20, -1.5f, -5), Quaternion.identity);
                     isMakePrefabX = true;
                 }
                 else
@@ -145,9 +141,8 @@ public class EnemyAttack : MonoBehaviour
                 {
                     attackLine1Y = Instantiate(attackLinePrefabY, new Vector3(-4, 20, -5), Quaternion.Euler(0, 0, 90));
                     attackLine2Y = Instantiate(attackLinePrefabY, new Vector3(-2, 20, -5), Quaternion.Euler(0, 0, 90));
-                    attackLine3Y = Instantiate(attackLinePrefabY, new Vector3(0, 20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine3Y = Instantiate(attackLinePrefabY, new Vector3(4, 20, -5), Quaternion.Euler(0, 0, 90));
                     attackLine4Y = Instantiate(attackLinePrefabY, new Vector3(2, 20, -5), Quaternion.Euler(0, 0, 90));
-                    attackLine5Y = Instantiate(attackLinePrefabY, new Vector3(4, 20, -5), Quaternion.Euler(0, 0, 90));
                     isMakePrefabY = true;
                 }
                 else
@@ -169,11 +164,10 @@ public class EnemyAttack : MonoBehaviour
             {
                 if (enemy.hp < 5)
                 {
-                    attackLine1Y = Instantiate(attackLinePrefabY, new Vector3(-4, -20, -5), Quaternion.Euler(0, 0, 90));
-                    attackLine2Y = Instantiate(attackLinePrefabY, new Vector3(-2, -20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine1Y = Instantiate(attackLinePrefabY, new Vector3(-3.5f, -20, -5), Quaternion.Euler(0, 0, 90));
+                    attackLine2Y = Instantiate(attackLinePrefabY, new Vector3(-1.5f, -20, -5), Quaternion.Euler(0, 0, 90));
                     attackLine3Y = Instantiate(attackLinePrefabY, new Vector3(0, -20, -5), Quaternion.Euler(0, 0, 90));
                     attackLine4Y = Instantiate(attackLinePrefabY, new Vector3(2, -20, -5), Quaternion.Euler(0, 0, 90));
-                    attackLine5Y = Instantiate(attackLinePrefabY, new Vector3(4, -20, -5), Quaternion.Euler(0, 0, 90));
                     isMakePrefabY = true;
                 }
                 else
